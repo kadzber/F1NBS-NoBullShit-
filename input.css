@@ -1,0 +1,20 @@
+.position-list {
+  max-width: 400px; /* Adjust width as needed */
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.position-list li {
+  padding: 8px;
+  border-bottom: 1px solid #e9ecef;
+}
+.position-list li:last-child {
+  border-bottom: none;
+}
+
+.list-group-item:hover {
+  padding: 8px;
+  border: 1px solid #ff1e00;
+}
