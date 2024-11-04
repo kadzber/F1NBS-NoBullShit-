@@ -1,5 +1,5 @@
 .position-list {
-  max-width: 400px; /* Adjust width as needed */
+  max-width: 500px; /* Adjust width as needed */
   margin: auto;
   padding: 20px;
   background-color: #f8f9fa;
@@ -14,7 +14,22 @@
   border-bottom: none;
 }
 
-.list-group-item:hover {
+.hover :hover {
   padding: 8px;
-  border: 1px solid #ff1e00;
+  border-bottom: 1px solid #ff0000;
+}
+
+li {
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 20px;
+  text-align: left;
 }

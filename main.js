@@ -7,16 +7,15 @@ async function RaceWinner() {
     );
 
     if (!response.ok) {
-      throw new Error("uneable to fetch data");
+      throw new Error("Uneable to fetch data");
     }
 
     const data = await response.json();
-    const FirstPlace =
-      "Race winner :" +
-      "" +
+    const firstPlaceDriverId =
       data.MRData.RaceTable.Races[0].Results[0].Driver.driverId;
+    const firstPlace = `Race winner: ${firstPlaceDriverId}`;
 
-    document.getElementById("RaceWinner").innerHTML = FirstPlace;
+    document.getElementById("RaceWinner").innerHTML = firstPlace;
   } catch (error) {
     console.error(error);
   }
@@ -30,33 +29,43 @@ async function RaceGridFinishResoult() {
       `http://ergast.com/api/f1/current/last/results.json`
     );
     if (!response.ok) {
-      throw new Error("uneable to fetch data");
+      throw new Error("Unable to fetch data");
     }
 
     const data = await response.json();
-    const RaceGridFinis = data.MRData.RaceTable.Races[0].Results;
+    const RaceGridFinish = data.MRData.RaceTable.Races[0].Results;
 
-    const RaceResoultFormatted = RaceGridFinis.map((result) => {
+    const resultsHTML = RaceGridFinish.map((result) => {
       const driver = result.Driver;
       const position = result.position;
-      const finishPlace = result.position;
-      console.log(finishPlace);
+      const points = result.points;
 
-      //console.log(data.MRData.RaceTable.Races[0].Results[0].position);
+      const pointsDisplay = points > 0 ? points : "";
 
       return `
-
-<li class="list-group-item"> ${result.position}: ${driver.givenName} ${driver.familyName} </li>`;
-
-      console.log(RaceResoultFormatted);
+        <tr>
+          <td>${position}</td>
+          <td>${driver.givenName} ${driver.familyName}</td>
+          <td>${pointsDisplay}</td>
+        </tr>
+      `;
     }).join("");
 
     document.getElementById("RaceResoult").innerHTML = `
       <div class="position-list">
         <h4>Race Results</h4>
-        <ul class="list-group">
-          ${RaceResoultFormatted}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Driver Name</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody class="hover">
+            ${resultsHTML} 
+          </tbody>
+        </table>
       </div>
     `;
   } catch (error) {
