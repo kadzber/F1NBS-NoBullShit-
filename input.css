@@ -10,9 +10,6 @@
   padding: 8px;
   border-bottom: 1px solid #e9ecef;
 }
-.position-list li:last-child {
-  border-bottom: none;
-}
 
 .hover :hover {
   padding: 8px;
@@ -32,4 +29,13 @@ th,
 td {
   padding: 10px 20px;
   text-align: left;
+}
+
+.noDecoration,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none !important;
+  color: inherit !important;
 }

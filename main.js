@@ -33,21 +33,26 @@ async function RaceGridFinishResoult() {
     }
 
     const data = await response.json();
+    console.log(data);
     const RaceGridFinish = data.MRData.RaceTable.Races[0].Results;
 
     const resultsHTML = RaceGridFinish.map((result) => {
       const driver = result.Driver;
       const position = result.position;
       const points = result.points;
+      const wikipediaLinks = result.Driver.url;
+      console.log(wikipediaLinks);
 
       const pointsDisplay = points > 0 ? points : "";
-
+      // document.getElementById("wikipediaLinksId").href = wikipediaLinks;
       return `
+      <div class = "NoStyling">
         <tr>
           <td>${position}</td>
-          <td>${driver.givenName} ${driver.familyName}</td>
+          <td><a href="${wikipediaLinks}" target="_blank" class="noDecoration">${driver.givenName} ${driver.familyName}</a></td>
           <td>${pointsDisplay}</td>
         </tr>
+      </div>
       `;
     }).join("");
 
